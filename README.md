@@ -1,7 +1,7 @@
 # example
 
 [![Build
-Status](https://travis-ci.org/aidanwinters/example.svg?branch=master)](https://travis-ci.org/aidanwinters/example)
+Status](https://travis-ci.org/aidanwinters/hw1.svg?branch=master)](https://travis-ci.org/aidanwinters/hw1)
 
 Example python project with testing.
 
