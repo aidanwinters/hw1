@@ -9,11 +9,11 @@ def pointlessSort(x):
 
 def bubbleSort(arr):
 
-    if len(arr) <= 1: #if the array is empty or only one element, return
-        return arr
-
-    conditionals = 1 # includes the above if statement
+    conditionals = 1 # includes the below if statement
     assignments = 0
+
+    if len(arr) <= 1: #if the array is empty or only one element, return
+        return arr, conditionals, assignments
 
     for i in range(len(arr)):
         assignments += 1 #for the above loop
@@ -35,11 +35,12 @@ def bubbleSort(arr):
     return arr, conditionals, assignments
 
 def insertionSort(arr):
-    if len(arr) <= 1: #if the array is empty or only one element, return
-        return arr
 
-    conditionals = 1 # includes the above if statement
+    conditionals = 1 # includes the below if statement
     assignments = 0
+
+    if len(arr) <= 1: #if the array is empty or only one element, return
+        return arr, conditionals, assignments
 
     for i in range(1, len(arr)):
         assignments += 1 #for the above loop
@@ -63,29 +64,48 @@ def insertionSort(arr):
     return arr, conditionals, assignments
 
 def partition(arr, low, high):
+
+
     pivot = arr[high]
     i = low
+
+    conds = 2 #for the above 2 assignments
+    assigns = 0
+
     for x in range(low, high):
+        conds += 1 #for the above loop
+        assigns += 1 #for the above loop
         if arr[x] < pivot:
             arr[i],arr[x] = arr[x],arr[i]
             i = i + 1
+            assigns+=3 #2 for the swap, 1 for increment
+
+        conds += 1 #for the above if statements
 
     arr[i], arr[high] = arr[high], arr[i]
 
-    return i
+    assigns += 2 # 2 for final swap
+
+    return i, conds, assigns
 
 def quickSort_rec(arr, low, high):
 
-    if len(arr) <= 1:
-        return arr
-    elif low >= high:
-        return arr
-    else:
-        p = partition(arr, low, high)
-        quickSort_rec(arr,low,p-1)
-        quickSort_rec(arr,p+1,high)
+    conditionals = 1 # includes the below if statement
+    assignments = 0
 
-    return arr
+    if len(arr) <= 1: #if the array is empty or only one element, return
+        return arr, conditionals, assignments
+    elif low >= high:
+        return arr, conditionals, assignments
+    else:
+        p,p_cond,p_assign = partition(arr, low, high)
+        larr, lcond, lassign = quickSort_rec(arr,low,p-1)
+        harr, hcond, hassign = quickSort_rec(arr,p+1,high)
+
+        cc = conditionals +  p_cond + lcond + hcond
+        aa = assignments +  p_assign + lassign + hassign
+
+    return arr, cc, aa
 
 def quickSort(arr):
     return quickSort_rec(arr, 0, len(arr) - 1)

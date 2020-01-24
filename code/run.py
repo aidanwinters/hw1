@@ -5,6 +5,7 @@ import numpy as np
 from .algs import quickSort, insertionSort, bubbleSort
 from timeit import default_timer as timer
 import matplotlib.pyplot as plt
+import math
 
 def run_stuff():
     """
@@ -19,33 +20,77 @@ def run_stuff():
     print("Insertion sort output: ", insertionSort(x))
     print("Quick sort output: ", quickSort(x))
 
-def time_algos(num_reps = 100, steps = range(100,1100, 100)):
+def time_algos(num_reps = 2, steps = range(100,1100, 100)):
 
     sizes = []
-    bub = []
-    insert = []
-    quick = []
+    bubble = {'times':[], 'assigns':[], 'conds':[]}
+    insert = {'times':[], 'assigns':[], 'conds':[]}
+    quick = {'times':[], 'assigns':[], 'conds':[]}
+
+    # ran_arr = np.random.randint(100, size=100)
+    # arr, cc, aa = insertionSort(ran_arr)
+    #
+    # print(arr)
+    # print(cc)
+    # print(aa)
+
+    # for i in steps:
+    #     for j in range(num_reps):
+    #         ran_arr = np.random.randint(i, size=i)
+    #         ins, ic, ia = insertionSort(ran_arr)
+    #
+    # return None
 
     for i in steps:
         for j in range(num_reps):
             ran_arr = np.random.randint(i, size=i)
             start = timer()
-            bubbleSort(ran_arr)
+            bub, bc, ba = bubbleSort(ran_arr)
+
+            ran_arr = np.random.randint(i, size=i)
             mid1 = timer()
-            insertionSort(ran_arr)
+            ins, ic, ia = insertionSort(ran_arr)
+
+            ran_arr = np.random.randint(i, size=i)
             mid2 = timer()
-            quickSort(ran_arr)
+            qui, qc, qa = quickSort(ran_arr)
             end = timer()
 
             sizes.append(i)
-            bub.append(mid1-start)
-            insert.append(mid2-mid1)
-            quick.append(end-mid2)
+            bubble['times'].append(mid1-start)
+            insert['times'].append(mid2-mid1)
+            quick['times'].append(end-mid2)
 
-    plt.scatter(sizes, bub)
+            bubble['conds'].append(bc)
+            insert['conds'].append(ic)
+            quick['conds'].append(qc)
+
+            bubble['assigns'].append(ba)
+            insert['assigns'].append(ia)
+            quick['assigns'].append(qa)
+
+    sizes = np.array(sizes)
+
+    # plt.scatter(sizes, bubble['times'])
+    # plt.scatter(sizes, quick['times'])
+    # plt.scatter(sizes, insert['times'])
+    # plt.title('Time')
+    # plt.legend(['Bubble', 'Quick', 'Insertion'], loc='upper left')
+    # plt.show()
+
+    plt.plot(sizes, (sizes * np.log(sizes)))
+    plt.plot(sizes, (sizes**2 ))
+    plt.scatter(sizes, bubble['conds'])
+    plt.scatter(sizes, quick['conds'])
+    plt.scatter(sizes, insert['conds'])
+    plt.title('Conditionals')
+    plt.legend([ 'n*log(n)', 'n^2','Bubble', 'Quick', 'Insertion'], loc='upper left')
     plt.show()
-    plt.scatter(sizes, insert)
-    plt.show()
-    plt.scatter(sizes, quick)
+
+    plt.scatter(sizes, bubble['assigns'])
+    plt.scatter(sizes, quick['assigns'])
+    plt.scatter(sizes, insert['assigns'])
+    plt.title('Assignments')
+    plt.legend(['Bubble', 'Quick', 'Insertion'], loc='upper left')
     plt.show()
     return sizes, bub, insert, quick
