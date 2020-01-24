@@ -25,10 +25,24 @@ def test_bubblesort():
     x = np.array([1,1,1,1,1])
     assert np.array_equal(algs.bubbleSort(x), sorted(x)) #TEST DUPLICATES
 
+def test_insertionsort():
+
+    x = np.array([1,2,4,0,1])
+
+    assert np.array_equal(algs.insertionSort([]), []) #EMPTY ARRAY
+    assert np.array_equal(algs.insertionSort([1]), [1]) #ARRAY OF ONE
+    assert np.array_equal(algs.insertionSort(x), sorted(x)) #SORT ACTUAL ARRAY
+
+    x = np.array([1,1,1,1,1])
+    assert np.array_equal(algs.insertionSort(x), sorted(x)) #TEST DUPLICATES
 
 def test_quicksort():
 
     x = np.array([1,2,4,0,1])
-    # for now, just attempt to call the quicksort function, should
-    # actually check output
-    algs.quickSort(x)
+
+    assert np.array_equal(algs.quickSort([]), []) #EMPTY ARRAY
+    assert np.array_equal(algs.quickSort([1]), [1]) #ARRAY OF ONE
+    assert np.array_equal(algs.quickSort(x), sorted(x)) #SORT ACTUAL ARRAY
+
+    x = np.array([1,1,1,1,1])
+    assert np.array_equal(algs.quickSort(x), sorted(x)) #TEST DUPLICATES

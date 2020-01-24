@@ -8,17 +8,59 @@ def pointlessSort(x):
     return np.array([1,2,3])
 
 def bubbleSort(arr):
+
     if len(arr) <= 1: #if the array is empty or only one element, return
         return arr
 
+    conditionals = 1 # includes the above if statement
+    assignments = 0
+
     for i in range(len(arr)):
+        assignments += 1 #for the above loop
+        conditionals += 1 # for the above loop
+
         for j in range((len(arr) - 1 - i)):
+            assignments += 1 #for the above loop
+            conditionals += 1 # for the above loop
+
             first = arr[j]
+            assignments += 1 # one assignment to hold current value
 
             if first > arr[j+1]:
                 arr[j] = arr[j+1]
                 arr[j+1] = first
-    return arr
+                assignments += 2 #adding two assignments for the switch
+
+            conditionals += 1 # for the above if statement
+    return arr, conditionals, assignments
+
+def insertionSort(arr):
+    if len(arr) <= 1: #if the array is empty or only one element, return
+        return arr
+
+    conditionals = 1 # includes the above if statement
+    assignments = 0
+
+    for i in range(1, len(arr)):
+        assignments += 1 #for the above loop
+        conditionals += 1 # for the above loop
+
+        temp = arr[i]
+        j = i-1
+        assignments += 2 #for the counter and for storing current
+
+        while j >= 0 and temp < arr[j]:
+            conditionals += 2 # for the above loop
+
+            arr[j+1] = arr[j]
+            j = j - 1
+
+            assignments += 2
+
+        arr[j+1] = temp
+        assignments += 1
+
+    return arr, conditionals, assignments
 
 def partition(arr, low, high):
     pivot = arr[high]
@@ -34,8 +76,10 @@ def partition(arr, low, high):
 
 def quickSort_rec(arr, low, high):
 
-    if low >= high:
-        return
+    if len(arr) <= 1:
+        return arr
+    elif low >= high:
+        return arr
     else:
         p = partition(arr, low, high)
         quickSort_rec(arr,low,p-1)
