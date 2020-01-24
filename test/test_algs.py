@@ -14,7 +14,10 @@ def test_bubblesort():
 
     assert np.array_equal(algs.bubbleSort([])[0], []) #EMPTY ARRAY
     assert np.array_equal(algs.bubbleSort([1])[0], [1]) #ARRAY OF ONE
-    assert np.array_equal(algs.bubbleSort(x)[0], sorted(x)) #SORT ACTUAL ARRAY
+    assert np.array_equal(algs.bubbleSort(x)[0], sorted(x)) #SORT ODD length ARRAy
+
+    x = np.array([1,2,4,0,1,8])
+    assert np.array_equal(algs.bubbleSort(x)[0], sorted(x)) #SORT EVEN length ARRAy
 
     x = np.array([1,1,1,1,1])
     assert np.array_equal(algs.bubbleSort(x)[0], sorted(x)) #TEST DUPLICATES
@@ -25,7 +28,10 @@ def test_insertionsort():
 
     assert np.array_equal(algs.insertionSort([])[0], []) #EMPTY ARRAY
     assert np.array_equal(algs.insertionSort([1])[0], [1]) #ARRAY OF ONE
-    assert np.array_equal(algs.insertionSort(x)[0], sorted(x)) #SORT ACTUAL ARRAY
+    assert np.array_equal(algs.insertionSort(x)[0], sorted(x)) #SORT Odd length ARRAY
+
+    x = np.array([1,2,4,0,1,8])
+    assert np.array_equal(algs.insertionSort(x)[0], sorted(x)) #SORT EVEN length ARRAy
 
     x = np.array([1,1,1,1,1])
     assert np.array_equal(algs.insertionSort(x)[0], sorted(x)) #TEST DUPLICATES
@@ -36,7 +42,10 @@ def test_quicksort():
 
     assert np.array_equal(algs.quickSort([])[0], []) #EMPTY ARRAY
     assert np.array_equal(algs.quickSort([1])[0], [1]) #ARRAY OF ONE
-    assert np.array_equal(algs.quickSort(x)[0], sorted(x)) #SORT ACTUAL ARRAY
+    assert np.array_equal(algs.quickSort(x)[0], sorted(x)) #SORT ODD length ARRAY
+
+    x = np.array([1,2,4,0,1,8])
+    assert np.array_equal(algs.quickSort(x)[0], sorted(x)) #SORT EVEN length ARRAy
 
     x = np.array([1,1,1,1,1])
     assert np.array_equal(algs.quickSort(x)[0], sorted(x)) #TEST DUPLICATES

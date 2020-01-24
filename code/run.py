@@ -20,26 +20,12 @@ def run_stuff():
     print("Insertion sort output: ", insertionSort(x))
     print("Quick sort output: ", quickSort(x))
 
-def time_algos(num_reps = 2, steps = range(100,1100, 100)):
+def time_algos(num_reps = 100, steps = range(100,1100, 100)):
 
     sizes = []
     bubble = {'times':[], 'assigns':[], 'conds':[]}
     insert = {'times':[], 'assigns':[], 'conds':[]}
     quick = {'times':[], 'assigns':[], 'conds':[]}
-
-    # ran_arr = np.random.randint(100, size=100)
-    # arr, cc, aa = insertionSort(ran_arr)
-    #
-    # print(arr)
-    # print(cc)
-    # print(aa)
-
-    # for i in steps:
-    #     for j in range(num_reps):
-    #         ran_arr = np.random.randint(i, size=i)
-    #         ins, ic, ia = insertionSort(ran_arr)
-    #
-    # return None
 
     for i in steps:
         for j in range(num_reps):
@@ -76,21 +62,73 @@ def time_algos(num_reps = 2, steps = range(100,1100, 100)):
     # plt.scatter(sizes, insert['times'])
     # plt.title('Time')
     # plt.legend(['Bubble', 'Quick', 'Insertion'], loc='upper left')
+    # plt.xlabel('Size of Array')
+    # plt.ylabel('Runtime (s)')
     # plt.show()
 
-    plt.plot(sizes, (sizes * np.log(sizes)))
-    plt.plot(sizes, (sizes**2 ))
-    plt.scatter(sizes, bubble['conds'])
+    # plt.plot(sizes, (sizes * np.log(sizes)))
+    # plt.plot(sizes, (sizes**2 ))
+    # plt.plot(sizes, 0.5*(sizes**2 ))
+    # plt.scatter(sizes, bubble['conds'])
+    # plt.scatter(sizes, quick['conds'])
+    # plt.scatter(sizes, insert['conds'])
+    # plt.title('Conditionals')
+    # # plt.legend([ 'n*log(n)', 'n^2', '0.5 * n^2', 'Bubble', 'Quick', 'Insertion'], loc='upper left')
+    # plt.legend(['Bubble', 'Quick', 'Insertion'], loc='upper left')
+    # plt.xlabel('Size of Array')
+    # plt.ylabel('# of Conditionals')
+    # plt.show()
+
+    # plt.plot(sizes, (sizes * np.log(sizes)))
+    # plt.plot(sizes, (sizes**2 ))
+    # plt.plot(sizes, 0.5*(sizes**2 ))
+    # plt.scatter(sizes, bubble['assigns'])
+    # plt.scatter(sizes, quick['assigns'])
+    # plt.scatter(sizes, insert['assigns'])
+    # plt.title('Assignments')
+    # # plt.legend(['n*log(n)', 'n^2', '0.5 * n^2', 'Bubble', 'Quick', 'Insertion'], loc='upper left')
+    # plt.legend(['Bubble', 'Quick', 'Insertion'], loc='upper left')
+    # plt.xlabel('Size of Array')
+    # plt.ylabel('# of Assignments')
+    # plt.show()
+
+    # plt.plot(sizes, (sizes**2 ))
+    # plt.scatter(sizes, bubble['conds'])
+    # plt.xlabel('Size of Array')
+    # plt.ylabel('# of Conditionals')
+    # plt.legend(['n^2', 'Bubble'], loc='upper left')
+    # plt.show()
+    # plt.plot(sizes, 1.5 * (sizes**2 ))
+    # plt.scatter(sizes, bubble['assigns'])
+    # plt.xlabel('Size of Array')
+    # plt.ylabel('# of Assignments')
+    # plt.legend(['1.5 * (n^2)', 'Bubble'], loc='upper left')
+    # plt.show()
+    #
+    # plt.plot(sizes, 0.5*(sizes**2 ))
+    # plt.scatter(sizes, insert['conds'])
+    # plt.xlabel('Size of Array')
+    # plt.ylabel('# of Conditionals')
+    # plt.legend(['0.5 * n^2', 'Insert'], loc='upper left')
+    # plt.show()
+    # plt.plot(sizes, 0.5*(sizes**2 ))
+    # plt.scatter(sizes, insert['assigns'])
+    # plt.xlabel('Size of Array')
+    # plt.ylabel('# of Assignments')
+    # plt.legend(['0.5 * n^2', 'Insert'], loc='upper left')
+    # plt.show()
+
+    plt.plot(sizes, 4*(sizes * np.log(sizes)))
     plt.scatter(sizes, quick['conds'])
-    plt.scatter(sizes, insert['conds'])
-    plt.title('Conditionals')
-    plt.legend([ 'n*log(n)', 'n^2','Bubble', 'Quick', 'Insertion'], loc='upper left')
+    plt.xlabel('Size of Array')
+    plt.ylabel('# of Conditionals')
+    plt.legend(['4 (n log(n))', 'Quick'], loc='upper left')
+    plt.show()
+    plt.plot(sizes, 4*(sizes * np.log(sizes)))
+    plt.scatter(sizes, quick['assigns'])
+    plt.xlabel('Size of Array')
+    plt.ylabel('# of Assignments')
+    plt.legend(['4 (n log(n))', 'Quick'], loc='upper left')
     plt.show()
 
-    plt.scatter(sizes, bubble['assigns'])
-    plt.scatter(sizes, quick['assigns'])
-    plt.scatter(sizes, insert['assigns'])
-    plt.title('Assignments')
-    plt.legend(['Bubble', 'Quick', 'Insertion'], loc='upper left')
-    plt.show()
     return sizes, bub, insert, quick
