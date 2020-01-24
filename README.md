@@ -1,9 +1,9 @@
-# example
+# HW1
 
 [![Build
 Status](https://travis-ci.org/aidanwinters/hw1.svg?branch=master)](https://travis-ci.org/aidanwinters/hw1)
 
-Example python project with testing.
+HW1 python project with testing.
 
 ## usage
 
